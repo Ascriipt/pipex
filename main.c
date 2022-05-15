@@ -6,13 +6,13 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/14 18:05:18 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:47:13 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_lib.h"
 
-static	char	*find_apath(char **env)
+char	*find_apath(char **env)
 {
 	int	i;
 
@@ -27,6 +27,9 @@ int	main(int argc, char **argv, char **env)
 {
 	int	pfd[2];
 	int	pid1;
+
+	char *str = add_path(find_apath(env), argv[1], '/');
+	char *fpath = rpath(str, ':');
 
 	if (argc < 0)
 		return (1);
@@ -43,10 +46,11 @@ int	main(int argc, char **argv, char **env)
 	}
 	if (pid1 == 0)
 	{
-		if (execve("/usr/bin/ls", argv + 1, env) == -1)
+		if (execve(fpath, argv, env) == -1)
 			perror("execve");
 	}
-	printf("PATH=%s\n", find_apath(env));
+	free(fpath);
+	free(str);
 	waitpid(pid1, NULL, 0);
 	return (0);
 }

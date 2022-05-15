@@ -6,7 +6,7 @@
 #    By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 00:12:03 by maparigi          #+#    #+#              #
-#    Updated: 2022/05/14 18:01:44 by maparigi         ###   ########.fr        #
+#    Updated: 2022/05/15 16:29:53 by maparigi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = pipex
 
 CC = clang
 
-SRCS =	main.c \
-		utilities.c \
+SRCS =	main.c			\
+		utilities.c		\
+		utilities2.c	\
 
 OBJS = ${SRCS:.c=.o}
 

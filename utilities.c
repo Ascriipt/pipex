@@ -6,34 +6,87 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:59:57 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/14 18:03:03 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:46:58 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_lib.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*rpath(char *str, char c)
+{
+	char	*dst;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	if (!str)
+		return (NULL);
+	dst = malloc(sizeof(char) * ft_strlenx(str, ':') + 2);
+	if (!dst)
+		return (NULL);
+	while (str[++i])
+		if (str[i] != c)
+			dst[j++] = str[i];
+	dst[j] = '\0';
+	return (dst);
+}
+
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	size_t	j;
-	size_t	len;
 
-	j = 0;
-	len = 0;
 	i = 0;
-	while (dst[i])
+	while (s[i])
 		i++;
-	while (src[len])
-		len++;
-	if (size <= i)
-		return (size + len);
-	while (src[j] && ((j + i) < (size - 1)))
+	return (i);
+}
+
+char	*add_path(char *str, char *av1, char c)
+{
+	char	*dst;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	if (str)
 	{
-		dst[i + j] = src[j];
-		j++;
+		dst = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(av1) + 2));
+		if (!dst)
+			return (NULL);
+		while (str[++i])
+			dst[i] = str[i];
+		dst[i++] = c;
+		while (av1[++j])
+			dst[i++] = av1[j];
+		dst[i] = '\0';
+		return (dst);
 	}
-	dst[i + j] = '\0';
-	return (len + i);
+	return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*dest;
+	size_t	ma;
+	size_t	i;
+	size_t	j;
+
+	if (!s1 || !s2)
+		return (NULL);
+	ma = ft_strlen(s1) + ft_strlen(s2) + 1;
+	dest = malloc(sizeof(char) * ma);
+	if (!dest)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		dest[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		dest[i++] = s2[j];
+	dest[i] = '\0';
+	return (dest);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
