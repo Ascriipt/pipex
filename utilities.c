@@ -6,31 +6,11 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:59:57 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/15 16:46:58 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:55:02 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_lib.h"
-
-char	*rpath(char *str, char c)
-{
-	char	*dst;
-	int		i;
-	int		j;
-
-	i = -1;
-	j = 0;
-	if (!str)
-		return (NULL);
-	dst = malloc(sizeof(char) * ft_strlenx(str, ':') + 2);
-	if (!dst)
-		return (NULL);
-	while (str[++i])
-		if (str[i] != c)
-			dst[j++] = str[i];
-	dst[j] = '\0';
-	return (dst);
-}
 
 size_t	ft_strlen(const char *s)
 {
@@ -40,6 +20,22 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+char	*access_path(char **paths, char *cmd)
+{
+	char	*apath;
+	int		i;
+
+	i = -1;
+	while (paths[++i])
+	{
+		apath = add_path(paths[i], cmd, '/');
+		if (access(apath, F_OK) == 0)
+			return (apath);
+		free(apath);
+	}
+	return (NULL);
 }
 
 char	*add_path(char *str, char *av1, char c)

@@ -6,7 +6,7 @@
 #    By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 00:12:03 by maparigi          #+#    #+#              #
-#    Updated: 2022/05/15 16:29:53 by maparigi         ###   ########.fr        #
+#    Updated: 2022/05/24 16:31:44 by maparigi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = pipex
 CC = clang
 
 SRCS =	main.c			\
+		ft_split.c		\
 		utilities.c		\
 		utilities2.c	\
 

@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/15 16:47:13 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:59:40 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ char	*find_apath(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	int	pfd[2];
-	int	pid1;
-
-	char *str = add_path(find_apath(env), argv[1], '/');
-	char *fpath = rpath(str, ':');
+	char	**paths;
+	char	*str;
+	int		pfd[2];
+	int		pid1;
 
 	if (argc < 0)
 		return (1);
@@ -44,12 +43,20 @@ int	main(int argc, char **argv, char **env)
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
+	paths = ft_split(find_apath(env), ':');
+	if (access_path(paths, argv[1]) == NULL)
+	{
+		ft_free(paths);
+		perror("access");
+		exit(EXIT_FAILURE);
+	}
+	str = access_path(paths, argv[1]);
 	if (pid1 == 0)
 	{
-		if (execve(fpath, argv, env) == -1)
+		if (execve(str, argv + 1, env) == -1)
 			perror("execve");
 	}
-	free(fpath);
+	ft_free(paths);
 	free(str);
 	waitpid(pid1, NULL, 0);
 	return (0);
