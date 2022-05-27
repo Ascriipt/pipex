@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:59:57 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/24 16:55:02 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:45:21 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,6 @@ char	*add_path(char *str, char *av1, char c)
 		return (dst);
 	}
 	return (NULL);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dest;
-	size_t	ma;
-	size_t	i;
-	size_t	j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	ma = ft_strlen(s1) + ft_strlen(s2) + 1;
-	dest = malloc(sizeof(char) * ma);
-	if (!dest)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		dest[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		dest[i++] = s2[j];
-	dest[i] = '\0';
-	return (dest);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
