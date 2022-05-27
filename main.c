@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/24 17:29:34 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:33:31 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,27 @@ char	*find_apath(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
+	char	**cmdargs;
 	char	*str;
-	int		pfd[2];
 	pid_t	pid1;
 
 	if (argc < 2)
 		return (1);
-	if (pipe(pfd) == -1)
-	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
-	}
 	pid1 = fork();
 	if (pid1 < 0)
 	{
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	str = check_access(argv, env);
+	cmdargs = ft_split(argv[1], 32);
+	str = check_access(env, cmdargs[0]);
 	if (pid1 == 0)
 	{
-		if (execve(str, argv + 1, env) == -1)
+		if (execve(str, cmdargs, env) == -1)
 			perror("execve");
 	}
 	free(str);
+	ft_free(cmdargs);
 	waitpid(pid1, NULL, 0);
 	return (0);
 }

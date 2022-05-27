@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:55:39 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/24 17:14:09 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:31:42 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*add_path(char *str, char *av1, char c);
 char	*access_path(char **paths, char *cmd);
-char	*check_access(char **av, char **env);
+char	*check_access(char **env, char *cmd);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlenx(char *str, char x);
