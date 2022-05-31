@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:55:39 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/31 17:34:51 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:57:28 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 
 /*---------------------------main---------------------------*/
