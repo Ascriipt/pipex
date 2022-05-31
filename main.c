@@ -36,7 +36,7 @@ void	parent_proc(char **argv, char **env, char **cmdargs, int pfd[2])
 	char	*str;
 	int		file2;
 
-	file2 = open(argv[4], O_RDWR | O_CREAT, 0777);
+	file2 = open(argv[4], O_RDWR | O_TRUNC | O_CREAT, 0777);
 	str = check_access(env, cmdargs[0]);
 	if (dup2(pfd[0], STDIN_FILENO) == -1
 		|| dup2(file2, STDOUT_FILENO) == -1)
