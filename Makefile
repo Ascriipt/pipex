@@ -6,13 +6,13 @@
 #    By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 00:12:03 by maparigi          #+#    #+#              #
-#    Updated: 2022/05/24 17:16:29 by maparigi         ###   ########.fr        #
+#    Updated: 2022/05/31 16:25:04 by maparigi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-CC = clang
+CC = gcc
 
 SRCS =	main.c			\
 		checks.c		\
