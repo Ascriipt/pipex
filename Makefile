@@ -6,7 +6,7 @@
 #    By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/14 00:12:03 by maparigi          #+#    #+#              #
-#    Updated: 2022/05/31 16:25:04 by maparigi         ###   ########.fr        #
+#    Updated: 2022/05/31 17:02:10 by maparigi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CFLAGS = -Wall -Wextra -Werror
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-	${CC} ${CFlAGS} ${OBJS} -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 clean:
 	rm -f ${OBJS}

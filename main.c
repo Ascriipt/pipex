@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/27 20:16:19 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:03:20 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,11 @@ void	parent_proc(char **env, char **cmdargs, char *str, int pfd[2])
 	close(pfd[0]);
 }
 
-int	main(int argc, char **argv, char **env)
+static void	ft_procs(char **argv, char **env, int *pfd, int pid1)
 {
 	char	**cmdargs;
 	char	*str;
-	pid_t	pid1;
-	int		pfd[2];
 
-	if (argc < 3)
-		return (1);
-	if (pipe(pfd) == -1)
-	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
-	}
 	pid1 = fork();
 	if (pid1 < 0)
 	{
@@ -82,5 +73,21 @@ int	main(int argc, char **argv, char **env)
 	}
 	free(str);
 	ft_free(cmdargs);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	pid_t	pid1;
+	int		pfd[2];
+
+	if (argc < 3)
+		return (1);
+	if (pipe(pfd) == -1)
+	{
+		perror("pipe");
+		exit(EXIT_FAILURE);
+	}
+	pid1 = 0;
+	ft_procs(argv, env, pfd, pid1);
 	return (0);
 }
