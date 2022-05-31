@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:59:57 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/27 20:45:21 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:06:53 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,15 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+char	*find_apath(char **env)
+{
+	int	i;
+
+	i = -1;
+	while (env[++i])
+		if (ft_strncmp(env[i], "PATH=/", 6) == 0)
+			return (env[i] + 5);
+	return (NULL);
 }

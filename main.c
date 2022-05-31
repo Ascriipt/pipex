@@ -6,22 +6,11 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/31 17:03:20 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:34:05 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_lib.h"
-
-char	*find_apath(char **env)
-{
-	int	i;
-
-	i = -1;
-	while (env[++i])
-		if (ft_strncmp(env[i], "PATH=/", 6) == 0)
-			return (env[i] + 5);
-	return (NULL);
-}
 
 void	child_proc(char **env, char **cmdargs, char *str, int pfd[2])
 {
@@ -54,10 +43,7 @@ static void	ft_procs(char **argv, char **env, int *pfd, int pid1)
 
 	pid1 = fork();
 	if (pid1 < 0)
-	{
-		perror("fork");
 		exit(EXIT_FAILURE);
-	}
 	if (pid1 == 0)
 	{
 		cmdargs = ft_split(argv[1], 32);
@@ -67,6 +53,8 @@ static void	ft_procs(char **argv, char **env, int *pfd, int pid1)
 	else
 	{
 		cmdargs = ft_split(argv[2], 32);
+		if (!cmdargs[0])
+			exit(EXIT_FAILURE);
 		str = check_access(env, cmdargs[0]);
 		waitpid(pid1, NULL, 0);
 		parent_proc(env, cmdargs, str, pfd);
