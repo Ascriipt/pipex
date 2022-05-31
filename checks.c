@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 17:01:46 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/31 17:33:52 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:11:48 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	*check_access(char **env, char *cmd)
 	{
 		free(str);
 		ft_free(paths);
-		perror("access");
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 	ft_free(paths);
 	return (str);
