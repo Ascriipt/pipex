@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/05/31 21:19:01 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:54:49 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	ft_procs(char **argv, char **env, int *pfd, int pid1)
 		cmdargs = ft_split(argv[3], 32);
 		if (!cmdargs[0])
 			exit(EXIT_FAILURE);
-		waitpid(pid1, NULL, 0);
+		waitpid(pid1, NULL, WNOHANG);
 		parent_proc(argv, env, cmdargs, pfd);
 	}
 	ft_free(cmdargs);
