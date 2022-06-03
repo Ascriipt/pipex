@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2022/06/02 20:54:49 by maparigi         ###   ########.fr       */
+/*   Updated: 2022/06/03 17:22:15 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void	child_proc(char **argv, char **env, char **cmdargs, int pfd[2])
 
 	str = check_access(env, cmdargs[0]);
 	file1 = open(argv[1], O_RDONLY);
-	if (file1 != -1 || str == NULL)
+	if (dup2(file1, STDIN_FILENO) == -1)
 	{
-		if (dup2(file1, STDIN_FILENO) == -1)
-		{
-			ft_free(cmdargs);
-			exit(EXIT_FAILURE);
-		}
+		ft_free(cmdargs);
+		exit(EXIT_FAILURE);
 	}
 	if (dup2(pfd[1], STDOUT_FILENO) == -1)
 		exit(EXIT_FAILURE);
