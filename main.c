@@ -6,7 +6,7 @@
 /*   By: maparigi <maparigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 21:54:59 by maparigi          #+#    #+#             */
-/*   Updated: 2023/01/16 01:29:04 by maparigi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:33:27 by maparigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ int	main(int argc, char **argv, char **env)
 	pid_t	pid1;
 	int		pfd[2];
 
-	if (argc < 5 || !env || !env[0])
-		return (1);
+	if (argc != 5 || !is_path(env))
+		return (EXIT_FAILURE);
 	if (pipe(pfd) == -1)
 	{
 		perror("pipe");
